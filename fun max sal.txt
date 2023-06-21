@@ -1,0 +1,38 @@
+
+ create table emp5
+ (
+  eid int,
+  ename varchar(30),
+  esala int,
+  dept varchar(20)
+ )
+Table created.
+
+SQL> insert into emp5 values (101,'sailu',20000,'csse')
+  2  /
+
+1 row created.
+
+SQL> 
+SQL> insert into emp5 values (101,'trisha',3000,'csse')
+  2  /
+
+1 row created.
+ 
+SQL> select * from emp5
+  2  /
+
+       EID ENAME                               ESALA DEPT
+---------- ------------------------------ ---------- ------------------
+       101 sailu                               20000 csse
+       101 trisha                               3000 csse
+
+ create or replace function high(dname emp5.dept%type)
+ return decimal
+ is
+ sql emp5.esala%type;
+ begin
+    select max(esala) into sal from emp5 where dname:=dname;
+    return sal;
+ end;
+Function created with compilation errors.
